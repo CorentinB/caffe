@@ -359,7 +359,7 @@ endif
 
 # optimized flags for pi
 ifeq ($(USE_RASPI3),1)
-       COMMON_FLAGS += -funsafe-math-optimizations -ftree-vectorize -fomit-frame-pointer -marm -fPIC -mfpu=vfpv3 -march=armv7
+       COMMON_FLAGS += -funsafe-math-optimizations -ftree-vectorize -fomit-frame-pointer -fPIC -march=armv7
 endif
 
 # CPU-only configuration
