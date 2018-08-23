@@ -190,11 +190,7 @@ ifneq ($(CPU_ONLY), 1)
 	LIBRARIES += cudart cublas cusparse curand
 endif
 
-ifeq ($(USE_RASPI3), 1)
-  LIBRARIES += glog gflags protobuf boost_system boost_filesystem boost_regex m
-else
-  LIBRARIES += glog gflags protobuf boost_system boost_filesystem boost_regex m hdf5_hl hdf5
-endif
+LIBRARIES += glog gflags protobuf boost_system boost_filesystem boost_regex m hdf5_hl hdf5
 
 # handle IO dependencies
 USE_LEVELDB ?= 1
