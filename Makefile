@@ -190,18 +190,24 @@ ifneq ($(CPU_ONLY), 1)
 	LIBRARIES += cudart cublas cusparse curand
 endif
 
-LIBRARIES += glog gflags protobuf boost_system boost_filesystem boost_regex m hdf5_hl hdf5
+LIBRARIES += glog gflags protobuf boost_system boost_filesystem m
 
 # handle IO dependencies
 USE_LEVELDB ?= 1
 USE_LMDB ?= 1
 USE_OPENCV ?= 1
+# cross-compiling
+USE_HDF5 ?= 1
 
 ifeq ($(USE_LEVELDB), 1)
 	LIBRARIES += leveldb snappy
 endif
 ifeq ($(USE_LMDB), 1)
 	LIBRARIES += lmdb
+endif
+# cross-compiling
+ifeq ($(USE_HDF5), 1)
+	LIBRARIES += hdf5_hl hdf5
 endif
 ifeq ($(USE_OPENCV), 1)
 	LIBRARIES += opencv_core opencv_highgui opencv_imgproc
@@ -355,6 +361,11 @@ ifeq ($(USE_LMDB), 1)
 ifeq ($(ALLOW_LMDB_NOLOCK), 1)
 	COMMON_FLAGS += -DALLOW_LMDB_NOLOCK
 endif
+endif
+
+# cross-compiling
+ifeq ($(USE_HDF5), 1)
+	COMMON_FLAGS += -DUSE_HDF5
 endif
 
 # optimized flags for pi
