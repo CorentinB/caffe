@@ -332,6 +332,7 @@ endif
 
 # Debugging
 ifeq ($(DEBUG), 1)
+	$(info DEBUG FOR CAFFE TRIGGERED)
 	COMMON_FLAGS += -DDEBUG -g -O0 -D_MWAITXINTRIN_H_INCLUDED
 	NVCCFLAGS += -G
 else
