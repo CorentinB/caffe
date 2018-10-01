@@ -332,8 +332,10 @@ ifeq ($(DEBUG), 1)
 	NVCCFLAGS += -G
 else
 	ifeq ($(CAFFE_OPTI_LEVEL),$(filter $(CAFFE_OPTI_LEVEL),0 1 2 3 s))
+		$(info    CAFFE_OPTI_LEVEL is $(CAFFE_OPTI_LEVEL))
 		COMMON_FLAGS += -DNDEBUG -g -O$(CAFFE_OPTI_LEVEL) -D_MWAITXINTRIN_H_INCLUDED
 	else
+		$(info    CAFFE_OPTI_LEVEL is not set but is $(CAFFE_OPTI_LEVEL))
 		COMMON_FLAGS += -DNDEBUG -g -O2 -D_MWAITXINTRIN_H_INCLUDED
 	endif
 endif
